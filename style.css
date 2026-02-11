@@ -1,0 +1,1634 @@
+/* =========================================
+   1. VARIABLES & CONFIGURATION
+   ========================================= */
+:root {
+  /* -- Updated Purple Theme -- */
+  --accent: #d279ff;          /* Main Electric Purple */
+  --accent-glow: rgba(210, 121, 255, 0.4);
+  --muted: rgba(255, 255, 255, 0.7);
+  --white: #ffffff;
+  --neon: #d279ff;            /* Replaces the green neon */
+  --cyber-blue: #d279ff;      /* Replaces the cyan blue */
+  --dark-bg: #050505;
+  
+  /* -- Layout -- */
+  --panel-bg: rgba(20, 20, 20, 0.8);
+  --panel-border: rgba(210, 121, 255, 0.15);
+}
+
+/* =========================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #050505;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--dark-bg);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; 
+}
+
+/* =========================================
+   3. BACKGROUND WRAPPERS
+   ========================================= */
+.bg-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: url("back.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.7) 90%);
+  pointer-events: none;
+}
+
+/* =========================================
+   4. MAIN LAYOUT STRUCTURE
+   ========================================= */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 32px;
+  border-radius: 30px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: var(--gap);
+  align-items: flex-start;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.right {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   5. HEADER & AVATAR
+   ========================================= */
+header.row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.header-flex {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+
+.header-text-col {
+  min-width: 0;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.02);
+  flex-shrink: 0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+h1 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.1;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.h1-reset { margin: 0; }
+
+.role {
+  color: white;
+  font-size: 11px;
+  margin-top: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Resume Button */
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--neon);
+  color: var(--neon);
+  background: rgba(57, 255, 20, 0.05);
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.resume-btn:hover {
+  background: rgba(57, 255, 20, 0.15);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+  transform: translateY(-2px);
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.8);
+}
+
+.resume-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   6. PANELS & CONTAINERS
+   ========================================= */
+.panel {
+  padding: 22px;
+  border-radius: 18px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  font-size: 14px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.panel:hover {
+  border-color: rgba(0, 243, 255, 0.3);
+  background: rgba(50, 50, 50, 0.9);
+}
+
+.oval-shape {
+  border-radius: 60px !important;
+  padding: 36px 42px !important;
+}
+
+.oval-shape::after {
+  border-radius: 58px !important;
+}
+
+.section-title,
+.panel strong,
+.roadmap-box h3,
+.project h4 {
+  display: block;
+  margin-bottom: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--cyber-blue);
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.panel strong {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+/* =========================================
+   7. ABOUT & JOURNEY SECTION
+   ========================================= */
+.about-p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.journey-section {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+}
+
+.journey-item {
+  display: flex;
+  gap: 16px;
+}
+
+.journey-year {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--cyber-blue);
+  font-weight: 700;
+  min-width: 80px;
+  padding-top: 2px;
+  font-size: 13px;
+  position: relative;
+}
+
+.journey-year::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neon);
+  box-shadow: 0 0 5px var(--neon);
+}
+
+.journey-content h5 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  color: #fff;
+}
+
+/* =========================================
+   8. SPECIAL EFFECTS
+   ========================================= */
+.spin-container {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.2s ease;
+}
+
+.spin-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(transparent, transparent, transparent, var(--neon) 20%, transparent 25%);
+  transform: translate(-50%, -50%) rotate(0deg);
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spin-container::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: #080808;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.spin-container:hover::before {
+  opacity: 1;
+  animation: rotate-border 2.5s linear infinite;
+}
+
+.spin-container:hover {
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+}
+
+@keyframes rotate-border {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.rotating-border-panel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rotating-border-panel::after {
+  background: rgba(35, 35, 35, 0.95);
+}
+
+.rotating-border-panel:hover {
+  border-color: transparent;
+}
+
+.rotating-border-panel > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================
+   9. NAME ANIMATION
+   ========================================= */
+.name-wrap {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.name-wrap::after {
+  background: #050505;
+  border-radius: 10px;
+}
+
+.name-wrap:hover {
+  transform: scale(1.02);
+}
+
+.name-text {
+  position: relative;
+  z-index: 2;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background-image: linear-gradient(90deg, #00f3ff 0%, #fff 20%, #00f3ff 40%, #00d2ff 60%, #00f3ff 80%, #fff 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glitter-flow 3s linear infinite;
+  filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.3));
+}
+
+@keyframes glitter-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.name-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 2px solid rgba(57, 255, 20, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.name-pulse.play {
+  animation: name-pulse-anim .9s ease-out forwards;
+}
+
+@keyframes name-pulse-anim {
+  0% { transform: translate(-50%, -50%) scale(0.15); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+
+/* =========================================
+   10. PROJECTS GRID
+   ========================================= */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.projects-wrapper {
+  margin-top: 14px;
+}
+
+.project {
+  padding: 18px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project:hover, .project:focus {
+  box-shadow: 0 12px 30px rgba(57, 255, 20, 0.15);
+  border-color: var(--neon);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(57, 255, 20, 0.05));
+  outline: none;
+}
+
+.project h4 {
+  font-size: 16px;
+  margin: 0 0 6px 0;
+  color: var(--cyber-blue);
+}
+
+.project p {
+  font-size: 12px;
+  transition: color 0.3s;
+}
+
+.project:hover h4 {
+  color: var(--neon);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+}
+
+.project:hover p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* =========================================
+   11. YOUTUBE GRID (NEW)
+   ========================================= */
+.youtube-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.yt-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.yt-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: var(--neon);
+    transform: translateY(-2px);
+}
+
+.yt-icon img {
+    width: 32px;
+    height: 32px;
+}
+
+.yt-content h5 {
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.yt-content p {
+    margin: 2px 0 0 0;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* =========================================
+   12. STAR TOPOLOGY ROADMAP
+   ========================================= */
+.roadmap-container {
+  position: relative;
+  padding-top: 20px;
+}
+
+.roadmap-spacer {
+  margin-top: 10px;
+}
+
+.star-hub {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--cyber-blue), #000);
+  border-radius: 50%;
+  margin: 0 auto 30px auto;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 30px var(--cyber-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+}
+
+.star-hub img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1);
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  position: relative;
+}
+
+.roadmap-grid::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--cyber-blue) 0%, transparent 100%);
+  transform: translateX(-50%);
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.roadmap-box {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 40px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.roadmap-box::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 50px;
+  height: 1px;
+  background: var(--cyber-blue);
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.roadmap-box:nth-child(odd)::before {
+  right: -50px;
+}
+
+.roadmap-box:nth-child(even)::before {
+  left: -50px;
+}
+
+.roadmap-box:hover {
+  border-color: var(--neon);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+.roadmap-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+}
+
+.roadmap-box h3 {
+  margin: 0;
+  font-size: 16px;
+  flex: 1;
+  line-height: 1.3;
+  color: var(--cyber-blue);
+  text-shadow: none;
+}
+
+.topic-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.topics-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+  color: var(--muted);
+  font-size: 13px;
+  margin-left: 46px;
+}
+
+.topics-list li {
+  margin-bottom: 6px;
+  padding-left: 10px;
+  position: relative;
+}
+
+.topics-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--neon);
+}
+
+.roadmap-box.active {
+  padding-top: 20px;
+  border-color: var(--cyber-blue);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.roadmap-box.active .topics-list {
+  max-height: 500px;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+
+.roadmap-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--cyber-blue);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.roadmap-box.active .roadmap-btn {
+  background: var(--cyber-blue);
+  color: #000;
+}
+
+/* =========================================
+   13. CERTS & SKILLS TILES
+   ========================================= */
+.certs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tile {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  display: inline-block;
+  transition: all .2s ease;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  position: relative;
+  font-weight: 700;
+}
+
+/* Skills with Icons Update */
+.skill-tile {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.tile:focus {
+  outline: 2px solid rgba(0, 243, 255, 0.3);
+  outline-offset: 4px;
+}
+
+.tile:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--cyber-blue);
+  color: #fff;
+}
+
+.tile.tapped {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 30px rgba(0, 243, 255, 0.2);
+  background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), transparent);
+  border-color: var(--cyber-blue);
+}
+
+.certs .tile {
+  font-weight: 700;
+  color: var(--white);
+}
+
+.certs-list-box,
+.skills-list-box {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* =========================================
+   14. CONTACT & SOCIAL BUTTONS
+   ========================================= */
+.contact-btn-full {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  color: #fff;
+}
+
+.contact-list-box {
+  display: none;
+  margin-top: 12px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.location-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.location-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: grayscale(100%);
+}
+
+.location-text {
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 0;
+  transition: transform 0.2s;
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.contact-row:hover {
+  transform: translateX(4px);
+  color: #fff;
+}
+
+.contact-row .icon {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: inline-block;
+  filter: grayscale(100%);
+  transition: filter 0.2s;
+}
+
+.contact-row:hover .icon {
+  filter: grayscale(0%);
+}
+
+/* Join Button */
+.connect-row {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.join-wrapper {
+  z-index: 50;
+  display: inline-block;
+  position: relative;
+}
+
+.connect-text {
+  font-size: 13px;
+}
+
+.join-btn {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(57, 255, 20, 0.4);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.05);
+  color: var(--neon);
+  font-weight: 800;
+  padding: 14px 24px;
+  border-radius: 14px;
+  cursor: pointer;
+  position: relative;
+  z-index: 50;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.join-btn:hover {
+  box-shadow: 0 0 40px rgba(57, 255, 20, 0.3);
+  border-color: var(--neon);
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* =========================================
+   15. HOLO EFFECT
+   ========================================= */
+.holo-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+  z-index: 20;
+}
+
+.holo-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 3px solid rgba(0, 200, 255, 0.12);
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.06);
+  transition: transform .45s cubic-bezier(.2, .9, .2, 1), opacity .3s;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+  opacity: 0;
+}
+
+.holo-effect.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.holo-effect::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border-top: 4px solid rgba(138, 43, 226, 0.9);
+  border-right: 4px solid rgba(0, 200, 255, 0.8);
+  border-left: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  animation: rotate 2.2s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.25));
+}
+
+.holo-effect::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 30% 30%, #9b59ff, #00e5ff);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: orbit 2.2s linear infinite;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.2), 0 0 8px rgba(155, 89, 255, 0.12);
+}
+
+.holo-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 2px solid rgba(155, 89, 255, 0.6);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.holo-pulse.play {
+  animation: pulse-scale 0.8s ease-out forwards;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0) translateX(100px) rotate(0); }
+  100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+@keyframes pulse-scale {
+  0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0.9; }
+  60% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.25; }
+  100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+}
+
+/* =========================================
+   16. MODAL STYLES (UPDATED FOR EMAIL)
+   ========================================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  width: min(400px, 90%);
+  background: #111;
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(57, 255, 255, 0.2);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9);
+  text-align: center;
+}
+
+.modal h3 {
+  margin: 0 0 12px 0;
+  color: var(--neon);
+  font-size: 24px;
+}
+
+.modal-desc {
+  margin-bottom: 25px;
+}
+
+.email-connect-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+}
+
+.email-address {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    font-size: 16px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.modal-close-btn {
+  margin-top: 25px;
+  background: transparent;
+  border: 1px solid #333;
+  color: #777;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* =========================================
+   17. CUSTOM CURSOR
+   ========================================= */
+@media (min-width: 900px) {
+  body { cursor: none; }
+  a, button, .tile, .roadmap-box, .project, .social-btn, .name-wrap, .resume-btn, .contact-row, .yt-card {
+    cursor: none;
+  }
+}
+
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--cyber-blue);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10000;
+  transition: width 0.1s, height 0.1s;
+}
+
+#cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--neon);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+  mix-blend-mode: difference;
+}
+
+body.hovered #cursor-ring {
+  width: 70px;
+  height: 70px;
+  background: rgba(57, 255, 20, 0.1);
+  border-color: var(--cyber-blue);
+  border-width: 2px;
+}
+
+body.hovered #cursor-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--neon);
+}
+
+/* =========================================
+   18. TOAST NOTIFICATION
+   ========================================= */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid var(--neon);
+  color: var(--neon);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toast::before {
+  content: '✓';
+  font-weight: 800;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+/* =========================================
+   19. PAGE FOOTER
+   ========================================= */
+.page-footer {
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  margin-top: auto;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.footer-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 40px;
+  background: var(--cyber-blue);
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.thank-you-msg {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--cyber-blue);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+  font-weight: 600;
+}
+
+.official-copy {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   20. MEDIA QUERIES
+   ========================================= */
+@media (max-width: 1100px) {
+  :root {
+    --max-width: 980px;
+  }
+  .right {
+    width: 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    padding: 24px;
+  }
+  .right {
+    width: 100%;
+  }
+  .projects, .youtube-grid {
+    grid-template-columns: 1fr;
+  }
+  .roadmap-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 14px;
+  }
+  .container {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  .role {
+    font-size: 11px;
+  }
+  .tile {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  .header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .resume-btn {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+.cert-item {
+  text-decoration: none;
+  display: block; /* Makes the whole tile clickable */
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.cert-item:hover {
+  color: var(--neon);
+  border-color: var(--neon);
+}
+/* Typewriter Text Color and Glow */
+#typewriter {
+  color: #ae24f3; /* The Electric Purple from your image */
+  text-shadow: 0 0 10px rgba(192, 81, 248, 0.8);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+/* Blinking Cursor Effect */
+.cursor {
+  color: #b020f8;
+  animation: blink 0.7s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+/* Projects Grid Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Glassmorphism Card Style */
+.project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 24px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card:hover {
+    background: rgba(210, 121, 255, 0.05); /* Subtle Purple tint */
+    border-color: #d279ff;
+    box-shadow: 0 10px 30px rgba(210, 121, 255, 0.2);
+    transform: translateY(-8px);
+}
+
+/* Header & Tags */
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.tech-tag {
+    font-size: 10px;
+    background: rgba(0, 243, 255, 0.1);
+    color: #00f3ff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Tech Stack Pills */
+.project-tech-stack {
+    margin: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-tech-stack span {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Project Buttons */
+.project-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #d279ff;
+    color: #d279ff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.project-btn:hover {
+    background: #d279ff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(210, 121, 255, 0.6);
+}
+
+.connect-footer {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+/* Typewriter Styling */
+#typewriter-role {
+    color: #d279ff;
+    text-shadow: 0 0 10px rgba(210, 121, 255, 0.8);
+    font-weight: 800;
+}
+.cursor {
+    color: #d279ff;
+    animation: blink 0.8s infinite;
+}
+
+/* Roadmap Tree Layout */
+.tree-container {
+    position: relative;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px 0;
+}
+
+.tree-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #d279ff, transparent);
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px rgba(210, 121, 255, 0.3);
+}
+
+.tree-node {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.node-content {
+    width: 45%;
+    background: rgba(15, 15, 15, 0.8);
+    border: 1px solid rgba(210, 121, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    transition: 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.left-node { justify-content: flex-start; text-align: right; }
+.right-node { justify-content: flex-end; text-align: left; }
+
+.node-dot {
+    width: 12px;
+    height: 12px;
+    background: #d279ff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #d279ff;
+    z-index: 2;
+}
+
+/* Hover Effects */
+.tree-node:hover .node-content {
+    border-color: #d279ff;
+    box-shadow: 0 0 20px rgba(210, 121, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.node-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.left-node .node-header { flex-direction: row-reverse; }
+
+.node-icon { width: 30px; height: 30px; filter: drop-shadow(0 0 5px #d279ff); }
+
+.node-list {
+    list-style: none;
+    padding: 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.node-btn {
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid #d279ff;
+    color: #d279ff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-family: 'Orbitron';
+    cursor: pointer;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .tree-line { left: 20px; }
+    .node-dot { left: 20px; }
+    .node-content { width: 80%; margin-left: 40px; text-align: left; }
+    .left-node .node-header { flex-direction: row; }
+}
+/* All Headers and Section Titles */
+.section-title,
+.panel strong,
+h1, h2, h3, h4,
+.project-title,
+.roadmap-box h3 {
+  color: var(--accent) !important;
+  text-shadow: 0 0 10px var(--accent-glow) !important;
+}
+
+/* Roadmap Tree & Skill Tree Line */
+.tree-line {
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent) !important;
+  box-shadow: 0 0 15px var(--accent-glow) !important;
+}
+
+.node-dot, .star-hub {
+  background: var(--accent) !important;
+  box-shadow: 0 0 15px var(--accent) !important;
+}
+
+/* Hover Effects for Panels and Projects */
+.panel:hover, .project-card:hover, .roadmap-box:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 20px var(--accent-glow) !important;
+}
+
+/* Custom Cursor Purple */
+#cursor-dot {
+  background: var(--accent) !important;
+}
+
+#cursor-ring {
+  border-color: var(--accent) !important;
+}
+.bg-overlay {
+  background: radial-gradient(circle at center, transparent 20%, rgba(13, 0, 26, 0.8) 90%);
+}
+
+body {
+  background-color: #050505;
+  /* Adds a subtle purple grid pattern */
+  background-image: 
+    linear-gradient(rgba(210, 121, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(210, 121, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+/* Buttons */
+.resume-btn, .join-btn, .project-btn {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background: rgba(210, 121, 255, 0.05) !important;
+}
+
+.resume-btn:hover, .join-btn:hover, .project-btn:hover {
+  background: var(--accent) !important;
+  color: #000 !important;
+  box-shadow: 0 0 20px var(--accent) !important;
+}
+
+/* Typewriter Cursor */
+.cursor {
+  color: var(--accent) !important;
+}
+/* Target the main heading and the specific name text class */
+h1 .name-text {
+    /* Main purple color with shades for the glitter effect */
+    background-image: linear-gradient(
+        90deg, 
+        #ab04ff 0%,   /* Electric Purple */
+        #ffffff 20%,  /* White highlight */
+        #b63bf4 40%,  /* Electric Purple */
+        #b148ff 60%,  /* Deeper Purple */
+        #d279ff 80%,  /* Electric Purple */
+        #c2bdbd 100%  /* White highlight */
+    );
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Strong purple glow to match your screenshots */
+    filter: drop-shadow(0 0 8px rgba(189, 76, 245, 0.8));
+    animation: glitter-flow 3s linear infinite;
+}
+
+/* Update the pulse animation color (the ring that appears when clicked) */
+.name-pulse {
+    border: 2px solid rgba(210, 121, 255, 0.6) !important;
+}
+/* THE FOOTER WRAPPER */
+.main-footer {
+    width: 100%;
+    background: #080808;
+    padding: 80px 0 40px 0;
+    border-top: 1px solid rgba(210, 121, 255, 0.1);
+    margin-top: 60px;
+    
+    /* Absolute Centering */
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+}
+
+/* THE INNER CONTENT */
+.footer-container {
+    width: 100%;
+    max-width: 1200px; /* Match your main content width */
+    padding: 0 20px;
+    text-align: center; /* Centers all text elements */
+}
+
+/* CENTER THE BUTTONS */
+.footer-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* FOOTER BRANDING */
+.footer-brand {
+    margin-bottom: 20px;
+}
+
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo-text .dot {
+    color: #d279ff; /* Your Purple Accent */
+}
+
+/* THE HIRE ME BUTTON */
+.hire-btn {
+    background: transparent;
+    border: 2px solid #d279ff;
+    color: #d279ff;
+    padding: 12px 35px;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hire-btn:hover {
+    background: #d279ff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(210, 121, 255, 0.6);
+}
+
+/* FOOTER BOTTOM BAR */
+.footer-bottom {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
